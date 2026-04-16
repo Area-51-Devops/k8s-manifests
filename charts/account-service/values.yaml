@@ -11,7 +11,7 @@ namespace: backend
 
 # ── Image ─────────────────────────────────────────────────────
 image:
-  repository: yaswanthreddy1602/account-service
+  repository: aswin1015/account-service
   # Overridden by CI to the semantic version tag (e.g. v1.2.3).
   # 'latest' is kept here only as a safe fallback for local dev.
   tag: "latest"
@@ -39,7 +39,7 @@ secret:
   DB_HOST: "mysql-0.mysql.data"
   DB_USER: "root"
   # DB_PASS is intentionally left empty — set at deploy time.
-  DB_PASS: ""
+  DB_PASS: "rootpassword"
   DB_NAME: "banking_db"
 
 # ── Resources ─────────────────────────────────────────────────
