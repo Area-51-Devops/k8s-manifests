@@ -1,17 +1,13 @@
 namespace: backend
-
 image:
   repository: area51devops/transaction-service
-  tag: "latest"
+  tag: "v0.2.2"
   pullPolicy: IfNotPresent
-
 replicaCount: 1
-
 service:
   type: ClusterIP
   port: 3003
   targetPort: 3003
-
 config:
   PORT: "3003"
   SERVICE_NAME: "transaction-service"
@@ -20,13 +16,11 @@ config:
   MQ_URL: "amqp://guest:guest@rabbitmq.data.svc.cluster.local:5672"
   ACCOUNT_SVC_URL: "http://account-service:3002"
   CONFIG_SVC_URL: "http://config-service:3008"
-
 secrets:
   name: banking-secrets
   keys:
     dbUser: DB_USER
     dbPass: DB_PASS
-
 initContainers:
   waitForMySQL:
     enabled: true
@@ -46,7 +40,6 @@ initContainers:
     enabled: true
     image: busybox:1.36
     healthUrl: "http://config-service:3008/health/startup"
-
 probes:
   startup:
     path: /health/startup
@@ -65,7 +58,6 @@ probes:
     periodSeconds: 10
     timeoutSeconds: 5
     failureThreshold: 6
-
 resources:
   requests:
     cpu: "100m"
@@ -73,17 +65,14 @@ resources:
   limits:
     cpu: "500m"
     memory: "256Mi"
-
 autoscaling:
   enabled: true
   minReplicas: 1
   maxReplicas: 8
   targetCPUUtilizationPercentage: 60
   targetMemoryUtilizationPercentage: 75
-
 podDisruptionBudget:
   enabled: false
-
 securityContext:
   runAsNonRoot: true
   runAsUser: 1000
@@ -91,5 +80,4 @@ securityContext:
   allowPrivilegeEscalation: false
   capabilities:
     drop: [ALL]
-
 podAnnotations: {}
