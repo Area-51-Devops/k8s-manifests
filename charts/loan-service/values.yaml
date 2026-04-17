@@ -11,7 +11,7 @@ namespace: backend
 
 # ── Image ─────────────────────────────────────────────────────
 image:
-  repository: area51devops/loan-service
+  repository: aswin1015/loan-service
   # Overridden by CI to the semantic version tag (e.g. v1.2.3).
   # 'latest' is kept here only as a safe fallback for local dev.
   tag: "latest"
