@@ -1,17 +1,13 @@
 namespace: backend
-
 image:
   repository: area51devops/banking-app-user-service
-  tag: "latest"
+  tag: "v0.0.2"
   pullPolicy: IfNotPresent
-
 replicaCount: 1
-
 service:
   type: ClusterIP
   port: 3001
   targetPort: 3001
-
 # Non-sensitive config
 config:
   PORT: "3001"
@@ -22,15 +18,13 @@ config:
   REDIS_PORT: "6379"
   JWT_EXPIRE: "8h"
   ACCOUNT_SVC_URL: "http://account-service:3002"
-
 # Secret references — actual values live in banking-secrets (applied via infra/secrets.yaml.template)
 secrets:
-  name: banking-secrets   # pre-existing Secret in the backend namespace
+  name: banking-secrets # pre-existing Secret in the backend namespace
   keys:
     dbUser: DB_USER
     dbPass: DB_PASS
     jwtSecret: JWT_SECRET
-
 initContainers:
   waitForMySQL:
     enabled: true
@@ -42,7 +36,6 @@ initContainers:
     image: busybox:1.36
     host: "redis.data.svc.cluster.local"
     port: 6379
-
 probes:
   startup:
     path: /health/startup
@@ -60,7 +53,6 @@ probes:
     periodSeconds: 10
     timeoutSeconds: 5
     failureThreshold: 6
-
 resources:
   requests:
     cpu: "100m"
@@ -68,16 +60,13 @@ resources:
   limits:
     cpu: "400m"
     memory: "256Mi"
-
 autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 4
   targetCPUUtilizationPercentage: 70
-
 podDisruptionBudget:
   enabled: false
-
 securityContext:
   runAsNonRoot: true
   runAsUser: 1000
@@ -85,5 +74,4 @@ securityContext:
   allowPrivilegeEscalation: false
   capabilities:
     drop: [ALL]
-
 podAnnotations: {}
