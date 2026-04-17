@@ -1,7 +1,7 @@
 namespace: frontend
 
 image:
-  repository: area51devops/banking-app-frontend
+  repository: area51devops/frontend
   tag: "latest"
   pullPolicy: IfNotPresent
 

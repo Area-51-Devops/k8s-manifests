@@ -1,7 +1,7 @@
 namespace: backend
 
 image:
-  repository: area51devops/banking-app-notification-service
+  repository: area51devops/notification-service
   tag: "latest"
   pullPolicy: IfNotPresent
 

@@ -1,7 +1,7 @@
 namespace: backend
 
 image:
-  repository: area51devops/banking-app-config-service
+  repository: area51devops/config-service
   tag: "latest"
   pullPolicy: IfNotPresent
 

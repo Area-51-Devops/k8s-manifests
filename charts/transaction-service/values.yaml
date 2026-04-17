@@ -1,7 +1,7 @@
 namespace: backend
 
 image:
-  repository: area51devops/banking-app-transaction-service
+  repository: area51devops/transaction-service
   tag: "latest"
   pullPolicy: IfNotPresent
 

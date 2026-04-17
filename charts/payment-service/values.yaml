@@ -1,6 +1,6 @@
 namespace: backend
 image:
-  repository: area51devops/banking-app-payment-service
+  repository: area51devops/payment-service
   tag: "v0.0.2"
   pullPolicy: IfNotPresent
 replicaCount: 1

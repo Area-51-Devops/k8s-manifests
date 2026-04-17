@@ -1,7 +1,7 @@
 namespace: backend
 
 image:
-  repository: area51devops/banking-app-service-discovery
+  repository: area51devops/service-discovery
   tag: "latest"
   pullPolicy: IfNotPresent
 
