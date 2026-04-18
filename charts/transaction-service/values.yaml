@@ -1,7 +1,7 @@
 namespace: backend
 image:
   repository: area51devops/transaction-service
-  tag: "v0.2.4"
+  tag: "v0.2.5"
   pullPolicy: IfNotPresent
 replicaCount: 1
 service:
