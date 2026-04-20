@@ -43,7 +43,7 @@ initContainers:
 probes:
   startup:
     path: /health/startup
-    # Higher threshold — saga orchestration takes longer to initialise
+    initialDelaySeconds: 30
     failureThreshold: 40
     periodSeconds: 5
   liveness:
