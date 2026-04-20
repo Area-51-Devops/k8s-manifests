@@ -13,7 +13,7 @@ image:
   repository: area51devops/loan-service
   # Overridden by CI to the semantic version tag (e.g. v1.2.3).
   # 'latest' is kept here only as a safe fallback for local dev.
-  tag: "v0.2.4"
+  tag: "v0.2.5"
   pullPolicy: IfNotPresent
 # ── Replicas ──────────────────────────────────────────────────
 replicaCount: 2
