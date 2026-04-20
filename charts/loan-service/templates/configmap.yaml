@@ -8,7 +8,6 @@ metadata:
 data:
   PORT: {{ .Values.config.PORT | quote }}
   DB_HOST: {{ .Values.config.DB_HOST | quote }}
-  DB_USER: {{ .Values.config.DB_USER | quote }}
   DB_NAME: {{ .Values.config.DB_NAME | quote }}
   MQ_URL: {{ .Values.config.MQ_URL | quote }}
   ACCOUNT_SVC_URL: {{ .Values.config.ACCOUNT_SVC_URL | quote }}

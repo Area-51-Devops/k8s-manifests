@@ -34,6 +34,14 @@ spec:
       # Allow 30 s for in-flight requests to drain before SIGKILL.
       terminationGracePeriodSeconds: 30
 
+      # ── Init Containers ──────────────────────────────────────
+      initContainers:
+        {{- if .Values.initContainers.waitForMySQL.enabled }}
+        - name: wait-for-mysql
+          image: {{ .Values.initContainers.waitForMySQL.image }}
+          command: ['sh', '-c', 'until nc -z {{ .Values.initContainers.waitForMySQL.host }} {{ .Values.initContainers.waitForMySQL.port }}; do echo "Waiting for MySQL..."; sleep 3; done']
+        {{- end }}
+
       containers:
         - name: account-service
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

@@ -23,7 +23,7 @@ service:
 config:
   PORT: "3007"
   SERVICE_NAME: "fraud-detection-service"
-  MQ_URL: "amqp://rabbitmq.data"
+  MQ_URL: "amqp://guest:guest@rabbitmq.data.svc.cluster.local:5672"
   CONFIG_SVC_URL: "http://config-service:3008"
 # ── Resources ─────────────────────────────────────────────────
 resources:
