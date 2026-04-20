@@ -25,17 +25,26 @@ service:
 # ── Application config (non-sensitive) ────────────────────────
 config:
   PORT: "3002"
+  SERVICE_NAME: "account-service"
+  DB_HOST: "mysql.data.svc.cluster.local"  # full FQDN — data namespace → cross-namespace
+  DB_NAME: "banking_db"
 # ── Database / secrets ────────────────────────────────────────
 # Sensitive values should be supplied via:
 #   1. External Secrets Operator (recommended for prod)
 #   2. helm upgrade --set secret.DB_PASS=... (dev / CI)
 # Do NOT commit real credentials here.
 secret:
-  DB_HOST: "mysql-0.mysql.data"
   DB_USER: "root"
   # DB_PASS is intentionally left empty — set at deploy time.
   DB_PASS: "rootpassword"
-  DB_NAME: "banking_db"
+# ── Init Containers ───────────────────────────────────────────
+# Mirrors the banking-app k8s manifest: wait for MySQL before starting
+initContainers:
+  waitForMySQL:
+    enabled: true
+    image: busybox:1.36
+    host: "mysql.data.svc.cluster.local"
+    port: 3306
 # ── Resources ─────────────────────────────────────────────────
 # Tuned for a lightweight Node.js service. Adjust after load testing.
 resources:
@@ -43,7 +52,7 @@ resources:
     cpu: "100m"
     memory: "128Mi"
   limits:
-    cpu: "500m"
+    cpu: "400m"
     memory: "256Mi"
 # ── Probes ────────────────────────────────────────────────────
 # The service exposes three distinct probe endpoints:

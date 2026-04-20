@@ -15,29 +15,10 @@ data:
       index index.html;
 
       # ── SPA routing ──────────────────────────────────────────────────────
+      # All /api/* paths are intercepted by Kgateway before reaching nginx.
+      # This location serves the SPA shell for all non-asset client routes.
       location / {
         try_files $uri /index.html;
-      }
-
-      # ── Fallback proxies (services NOT handled by Gateway HTTPRoutes) ─────
-      # /api/user/, /api/account/, /api/tx/, /api/loan/, /api/report/
-      # are intercepted by Kgateway BEFORE reaching this nginx.
-      # Only /api/payment/ and /api/notify/ fall through here.
-
-      location /api/payment/ {
-        proxy_pass {{ .Values.nginx.paymentServiceUrl }}/;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_read_timeout 30s;
-      }
-
-      location /api/notify/ {
-        proxy_pass {{ .Values.nginx.notificationServiceUrl }}/;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_read_timeout 30s;
       }
 
       # ── Static asset caching ──────────────────────────────────────────────
