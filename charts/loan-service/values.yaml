@@ -16,7 +16,7 @@ image:
   tag: "v0.2.15"
   pullPolicy: IfNotPresent
 # ── Replicas ──────────────────────────────────────────────────
-replicaCount: 2
+replicaCount: 1
 # ── Service ───────────────────────────────────────────────────
 service:
   type: ClusterIP
