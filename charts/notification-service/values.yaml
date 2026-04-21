@@ -1,7 +1,7 @@
 namespace: backend
 image:
   repository: area51devops/notification-service
-  tag: "v0.0.6"
+  tag: "v0.0.10"
   pullPolicy: IfNotPresent
 replicaCount: 1
 service:
